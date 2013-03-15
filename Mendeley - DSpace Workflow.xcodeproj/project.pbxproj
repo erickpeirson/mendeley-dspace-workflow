@@ -10,6 +10,7 @@
 		156E077016F2F029002A0343 /* md_workflow.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = md_workflow.py; sourceTree = "<group>"; };
 		156E077116F2F168002A0343 /* md_workflow.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = md_workflow.js; sourceTree = "<group>"; };
 		156E077216F2F2E2002A0343 /* md_workflow.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = md_workflow.html; sourceTree = "<group>"; };
+		156E077316F2F446002A0343 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -17,6 +18,7 @@
 			isa = PBXGroup;
 			children = (
 				156E077216F2F2E2002A0343 /* md_workflow.html */,
+				156E077316F2F446002A0343 /* README.md */,
 				156E077016F2F029002A0343 /* md_workflow.py */,
 				156E077116F2F168002A0343 /* md_workflow.js */,
 			);
