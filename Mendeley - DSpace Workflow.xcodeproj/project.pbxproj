@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		1554606A16F38AED00723A9A /* app.yaml */ = {isa = PBXFileReference; lastKnownFileType = text; path = app.yaml; sourceTree = "<group>"; };
+		1554606B16F3A55200723A9A /* add_corpus.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = add_corpus.html; sourceTree = "<group>"; };
+		1554606C16F3E22300723A9A /* corpora.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = corpora.html; sourceTree = "<group>"; };
+		1554606D16F3E36200723A9A /* corpus.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = corpus.html; sourceTree = "<group>"; };
+		1554606E16F50B6700723A9A /* paper.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = paper.html; sourceTree = "<group>"; };
+		1554606F16F5542900723A9A /* bitstream.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = bitstream.html; sourceTree = "<group>"; };
 		156E077016F2F029002A0343 /* md_workflow.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = md_workflow.py; sourceTree = "<group>"; };
 		156E077116F2F168002A0343 /* md_workflow.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = md_workflow.js; sourceTree = "<group>"; };
 		156E077216F2F2E2002A0343 /* md_workflow.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = md_workflow.html; sourceTree = "<group>"; };
@@ -17,9 +23,15 @@
 		156E076916F2EFFD002A0343 = {
 			isa = PBXGroup;
 			children = (
+				1554606B16F3A55200723A9A /* add_corpus.html */,
+				1554606F16F5542900723A9A /* bitstream.html */,
+				1554606C16F3E22300723A9A /* corpora.html */,
+				1554606D16F3E36200723A9A /* corpus.html */,
 				156E077216F2F2E2002A0343 /* md_workflow.html */,
+				1554606E16F50B6700723A9A /* paper.html */,
 				156E077316F2F446002A0343 /* README.md */,
 				156E077016F2F029002A0343 /* md_workflow.py */,
+				1554606A16F38AED00723A9A /* app.yaml */,
 				156E077116F2F168002A0343 /* md_workflow.js */,
 			);
 			sourceTree = "<group>";

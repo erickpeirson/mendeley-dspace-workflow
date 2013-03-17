@@ -1,0 +1,272 @@
+<script src="../../../resources/jquery-1.9.1.min.js"></script>
+
+<style>
+
+td.checkbox {
+    width: 25px;
+}
+td.field {
+    width: 175px;
+}
+td.current_value {
+    width: 400px;
+}
+td.new_value {
+    width: 400px;
+}
+
+#mappings {
+    border: 1px dashed black;
+    display: none;
+    padding: 10px;
+    width: 800px;
+}
+
+#submit {
+    display: none;
+}
+
+</style>
+
+<h2>Editing Paper Meta-Data</h2>
+
+<form id="paper" action="" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+<table width="1000">
+    <tr>
+        <td class="checkbox"><input type="checkbox" class="check" name="checked" value="title" /></td>
+        <td class="field">dc.title</td>
+        <td class="current_value">{{paper.title}}</td>
+        <td class="new_value"><textarea name="title" cols="40"></textarea></td>
+    </tr>
+</table>
+
+<table width="1000">
+    {% for creator in creators %}
+    <tr>
+        <td class="checkbox"><input type="checkbox" class="check" name="checked" value="creator_{{creator.0}}" /></td>
+        <td class="field">dc.creator</td>
+        <td class="current_value" id="creator_value_{{creator.0}}">{{creator.1}}</td>
+        <td class="new_value">
+            <input type="search" class="creator_search" id="creator_search_{{creator.0}}" /> <input type="button" class="creator_search_button" id="find_{{creator.0}}" style="margin-left: 15px;" value="Go" />
+            <input type="hidden" class="creator_input" id="creator_input_{{creator.0}}" name="creator_{{creator.0}}" />
+        </td>
+
+    </tr>
+    <tr>
+        <td class="checkbox"><input type="checkbox" class="check" name="checked" value="creator_uri_{{creator.0}}" /></td>
+        <td class="field">dc.creator.uri</td>
+        <td class="current_value" id="creator_uri_value_{{creator.0}}">{{creator.2}}</td>
+        <td class="new_value"><input type="hidden" class="creator_uri_input" name="creator_uri_{{creator.0}}" size="60" /></td>
+    </tr>
+    {% endfor %}
+</table>
+
+<table width="1000">
+    <tr>
+        <td class="checkbox"><input type="checkbox" class="check" name="checked" value="date" /></td>
+        <td class="field">dc.date</td>
+        <td class="current_value">{{paper.date}}</td>
+        <td class="new_value"><input type="text" name="date" size="4" /></td>
+    </tr>
+    
+    <tr>
+        <td class="checkbox"><input type="checkbox" class="check" name="checked" value="description_abstract" /></td>
+        <td class="field">dc.description.abstract</td>
+        <td class="current_value">{{paper.description_abstract}}</td>
+        <td class="new_value"><textarea name="description_abstract" cols="40" rows="5"></textarea></td>
+    </tr>
+
+    <tr>
+        <td class="checkbox"><input type="checkbox" class="check" name="checked" value="description_citation" /></td>
+        <td class="field">dc.description</td>
+        <td class="current_value">{{paper.description_citation}}</td>
+        <td class="new_value"><input type="text" name="description_citation" size="60" /></td>
+    </tr>
+    
+    <tr>
+        <td class="checkbox"><input type="checkbox" class="check" name="checked" value="source" /></td>
+        <td class="field">dc.source</td>
+        <td class="current_value">{{paper.source}}</td>
+        <td class="new_value"><input type="text" name="source" size="60" /></td>
+    </tr>
+    
+    <tr>
+        <td class="checkbox"><input type="checkbox" class="check" name="checked" value="source_uri" /></td>
+        <td class="field">dc.description</td>
+        <td class="current_value">{{paper.source_uri}}</td>
+        <td class="new_value"><input type="text" name="source_uri" size="60" /></td>
+    </tr>
+    
+    <tr>
+        <td class="checkbox"><input type="checkbox" class="check" name="checked" value="date_digitized" /></td>
+        <td class="field">dc.date.digitized</td>
+        <td class="current_value">{{paper.date_digitized}}</td>
+        <td class="new_value"><input type="date" name="date_digitized" size="10" /></td>
+    </tr>
+    
+    <tr>
+        <td class="checkbox"><input type="checkbox" class="check" name="checked" value="format_extent" /></td>
+        <td class="field">dc.format.extent</td>
+        <td class="current_value">{{paper.format_extent}}</td>
+        <td class="new_value"><input type="text" name="format_extent" size="3" /></td>
+    </tr>
+    
+    <tr>
+        <td class="checkbox"><input type="checkbox" class="check" name="checked" value="type" /></td>
+        <td class="field">dc.type</td>
+        <td class="current_value">{{paper.type}}</td>
+        <td class="new_value"><input type="text" name="type" size="10" /></td>
+    </tr>
+    
+    <tr>
+        <td class="checkbox"><input type="checkbox" class="check" name="checked" value="language" /></td>
+        <td class="field">dc.language</td>
+        <td class="current_value">{{paper.language}}</td>
+        <td class="new_value"><input type="text" name="language" size="3" /></td>
+    </tr>
+    
+    <tr>
+        <td class="checkbox"><input type="checkbox" class="check" name="checked" value="rights" /></td>
+        <td class="field">dc.rights</td>
+        <td class="current_value">{{paper.rights}}</td>
+        <td class="new_value"><input type="text" name="rights" size="60" /></td>
+    </tr>    
+    <tr>
+        <td class="checkbox"><input type="checkbox" class="check" name="checked" value="rights_holder" /></td>
+        <td class="field">dc.rights.holder</td>
+        <td class="current_value">{{paper.rights_holder}}</td>
+        <td class="new_value"><input type="text" name="rights_holder" size="60" /></td>
+    </tr>
+    
+</table>
+
+<div id="mappings"></div>
+
+<div id="preview">Preview</div>
+<div id="submit">Submit</div>
+<div id="hidden_mappings"></div>
+
+<input type="reset" value="Clear Changes" />
+
+
+
+</form>
+
+<script>
+    var checked = Array();
+    {% for field in paper.checked %}
+        checked.push('{{field}}');
+    {% endfor %}
+    $('.check').each(function(index) {
+        if ($.inArray($(this).attr("value"), checked) > -1) {
+            $(this).prop("checked", true);
+        }
+    });
+
+    $('#preview').click (function () {
+        mappings = [];
+        $('.creator_input').each (function (index) {
+            if ($(this).val() != '') {
+            //  Get the old value
+                name_split = $(this).attr('name').split("_");
+                creator_index = name_split[name_split.length-1];
+                creator_value = $('#creator_value_'+creator_index).text();
+            
+            //  Create the candidate mapping
+                map = new Object();
+                map.type = 'creator';
+                map.from = creator_value;
+                map.to = $(this).val();
+                mappings.push(map);
+            }
+        });
+        
+        $('.creator_uri_input').each (function (index) {
+            if ($(this).val() != '') {
+                name_split = $(this).attr('name').split("_");
+                creator_index = name_split[name_split.length-1];
+
+            //  Is there a new value?
+                if ($('#creator_input_'+creator_index).val() != '') {
+                    when = $('#creator_input_'+creator_index).val();
+            //  Otherwise, get the old value
+                } else {
+                    when = $('#creator_value_'+creator_index).text();
+                }
+            
+            //  Create the candidate mapping
+                map = new Object();
+                map.type = 'creator_uri';
+                map.when = when;
+                map.to = $(this).val();
+                mappings.push(map);
+            }
+        });
+        
+        $('#preview').hide();
+        $('#submit').show();
+        $('#mappings').show();
+        $('#mappings').html ( function() {
+            out = '<span><strong>Would you like to apply the following changes to the whole corpus?</strong></span><br /><br />';
+            for (x in mappings) {
+                if (mappings[x].type == 'creator') {
+                    out = out + '<input type="checkbox" name="mapping_'+x+'" class="mapping_checkbox" checked />';
+                    out = out + '<span>Where <em>dc.creator</em> is <strong>' + mappings[x].from + '</strong>, replace with <strong>' + mappings[x].to + '</strong></span><br />';
+                }
+                if (mappings[x].type == 'creator_uri') {
+                    out = out + '<input type="checkbox" name="mapping_'+x+'" class="mapping_checkbox" checked />';
+                    out = out + '<span>Where <em>dc.creator</em> is <strong>' + mappings[x].when + '</strong>, set <em>dc.creator.uri</em> to <strong>' + mappings[x].to + '</strong></span><br />';
+                }
+            }
+            return out;
+        });
+    });
+    
+    $('#submit').click( function() {
+        $('#hidden_mappings').html ( function () {
+            out = '';
+            $('.mapping_checkbox').each( function(index) {
+                name_split = $(this).attr('name').split("_");
+                mapping_index = name_split[name_split.length-1];
+                mapping_value = mappings[mapping_index];
+                
+                if ($(this).prop('checked')) {
+                    if (mapping_value.type == 'creator') {
+                        out = out + '<input type="hidden" name="' + $(this).attr('name') + '_type" value="'+ mapping_value.type +'" />';
+                        out = out + '<input type="hidden" name="' + $(this).attr('name') + '_from" value="'+ mapping_value.from +'" />';
+                        out = out + '<input type="hidden" name="' + $(this).attr('name') + '_to" value="'+ mapping_value.to +'" />';
+                    }
+                    if (mapping_value.type == 'creator_uri') {
+                        out = out + '<input type="hidden" name="' + $(this).attr('name') + '_type" value="'+ mapping_value.type +'" />';
+                        out = out + '<input type="hidden" name="' + $(this).attr('name') + '_where" value="'+ mapping_value.where +'" />';
+                        out = out + '<input type="hidden" name="' + $(this).attr('name') + '_to" value="'+ mapping_value.to +'" />';
+                    }
+                }
+            });
+            return out;
+        });
+        $('.mapping_checkbox').remove();
+        $('#paper').submit();
+
+    });
+    
+    conceptSearch = function (pattern) {
+        xmlhttp = new XMLHttpRequest();
+    }
+    
+
+ 
+    var url = "http://alvin.boldlygoingnowhere.org/examples/xss/callback_json.php";
+ 
+    
+    $('.creator_search_button').click ( function () {
+        name_split = $(this).attr('id').split("_");
+        index = name_split[name_split.length-1];
+        
+        url = "http://digitalhps-develop.asu.edu:8080/conceptpower/rest/ConceptLookup/"
+        
+        $.getJSON(url+$('#creator_search_'+index).val()+"/Noun&jsonp=?", function(data) {
+            
+        });
+    });
+</script>

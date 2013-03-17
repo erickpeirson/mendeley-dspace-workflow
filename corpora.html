@@ -1,0 +1,14 @@
+<h1>Loaded Corpora</h1>
+
+<table width="400">
+    <tr>
+        <td width="80%">Title</td>
+        <td width="20%">Size</td>
+    </tr>
+{% for corpus in corpora %}
+    <tr>
+        <td><a href="corpora/view/{{corpus.id}}">{{corpus.title}}</a></td>
+        <td>{{corpus.size}}</td>
+    </tr>
+{% endfor %}
+</table>

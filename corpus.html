@@ -1,0 +1,43 @@
+<script src="../../../resources/jquery-1.9.1.min.js"></script>
+
+
+<h1>Corpus: {{corpus.title}}</h1>
+
+<table width="900">
+    <tr>
+        <td width="60%">Title</td>
+
+    </tr>
+    {% for paper in papers %}
+    <tr id="{{ paper.id }}">
+        <td><a href="paper/{{paper.id}}">{{paper.title}}</a></td>
+        <td><progress value="{{paper.completion}}" max="100" style="width:50px;" /></td>
+        <td class="file" id="file_pdf">{% if paper.file_pdf != None %}<a href="/serve/{{paper.file_pdf}}" target="_blank">PDF</a> (<a href="/bitstream/{{paper.id}}/file_pdf">Replace</a>){% else %}<a href="/bitstream/{{paper.id}}/file_pdf">Add PDF</a>{% endif %}</td>
+        <td class="file" id="file_cocr">{% if paper.file_cocr != None %}<a href="/serve/{{paper.file_cocr}}" target="_blank">cOCR</a> (<a href="/bitstream/{{paper.id}}/file_cocr">Replace</a>){% else %}<a href="/bitstream/{{paper.id}}/file_cocr">Add cOCR</a>{% endif %}</td>
+        <td class="file" id="file_references">{% if paper.file_references != None %}<a href="/serve/{{paper.file_references}}" target="_blank">References</a> (<a href="/bitstream/{{paper.id}}/file_references">Replace</a>){% else %}<a href="/bitstream/{{paper.id}}/file_references">Add References</a>{% endif %}</td>
+    </tr>
+   {% endfor %}
+    
+    
+</table>
+
+<!--
+<script>
+file_links = function(paper) {
+    
+}
+
+{% for paper in papers %}
+    var checked = Array();
+    {% for field in paper.checked %}
+        checked.push('{{field}}');
+    {% endfor %}
+    $('#{{paper.id}} .file').each(function(index) {
+        if ($.inArray($(this).attr("value"), checked) > -1) {
+            $(this).html('File Uploaded');
+        } else {
+            $(this).html('<a href="/bitstream/add/{{paper.id}}/'+ $(this).attr("id") +'">Add File</a>');
+        }
+    });
+{% endfor %}
+</script> -->
